@@ -89,6 +89,25 @@
   line-height: 1;
   font-size: 0.82rem;
 }
+.cart-link { position: relative; }
+.cart-count {
+  position: absolute;
+  top: -0.45rem;
+  right: -0.5rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 1rem;
+  height: 1rem;
+  padding: 0 0.2rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.cart-count.visible { display: inline-flex; }
 .navbar-action-btn:hover {
   color: #fff;
   opacity: 0.85;

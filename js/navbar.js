@@ -1,5 +1,6 @@
 const USER_STORAGE_KEY = "novabmx:users";
 const CURRENT_USER_KEY = "novabmx:currentUser";
+const GUEST_CART_KEY = "novabmx:cart:guest";
 
 function getStoredUsers() {
   try { return JSON.parse(localStorage.getItem(USER_STORAGE_KEY) || "[]"); }
@@ -41,26 +42,33 @@ function saveUserCart(user, cart) {
   localStorage.setItem(`novabmx:cart:${user.email}`, JSON.stringify(cart));
 }
 
+function getGuestCart() {
+  try { return JSON.parse(localStorage.getItem(GUEST_CART_KEY) || "[]"); }
+  catch { return []; }
+}
+
 function getCart() {
   const user = getCurrentUser();
-  return getUserCart(user);
+  return user ? getUserCart(user) : getGuestCart();
 }
 
 function addToCart(item) {
   const user = getCurrentUser();
-  if (!user) return false;
   const cart = getCart();
   cart.push(item);
-  saveUserCart(user, cart);
+  if (user) saveUserCart(user, cart);
+  else localStorage.setItem(GUEST_CART_KEY, JSON.stringify(cart));
+  window.dispatchEvent(new CustomEvent("novabmx:cart-updated"));
   return true;
 }
 
 function removeFromCart(index) {
   const user = getCurrentUser();
-  if (!user) return [];
   const cart = getCart();
   cart.splice(index, 1);
-  saveUserCart(user, cart);
+  if (user) saveUserCart(user, cart);
+  else localStorage.setItem(GUEST_CART_KEY, JSON.stringify(cart));
+  window.dispatchEvent(new CustomEvent("novabmx:cart-updated"));
   return cart;
 }
 
@@ -145,7 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </button>
-          <a href="carrito.html" class="navbar-action-btn" aria-label="Carrito" title="Carrito">
+          <a href="carrito.html" class="navbar-action-btn cart-link" aria-label="Carrito" title="Carrito">
+            <span class="cart-count" aria-live="polite"></span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="9" cy="20" r="1"></circle>
               <circle cx="19" cy="20" r="1"></circle>
@@ -157,6 +166,21 @@ document.addEventListener("DOMContentLoaded", () => {
       navbarInner.appendChild(secondary);
     }
   }
+
+  const cartLink = document.querySelector(".cart-link");
+  const cartCount = cartLink && cartLink.querySelector(".cart-count");
+  function updateCartCount() {
+    if (!cartCount) return;
+    const count = getCart().length;
+    cartCount.textContent = count ? String(count) : "";
+    cartCount.classList.toggle("visible", count > 0);
+    cartLink.setAttribute("aria-label", count
+      ? `Carrito, ${count} ${count === 1 ? "producto" : "productos"}`
+      : "Carrito");
+  }
+  updateCartCount();
+  window.addEventListener("novabmx:cart-updated", updateCartCount);
+  window.addEventListener("storage", updateCartCount);
 
 
   const accountBtn = document.getElementById("account-btn");
@@ -191,6 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </svg>
       `;
     }
+    updateCartCount();
   }
 
   function openAccountModal() {

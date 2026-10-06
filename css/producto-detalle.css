@@ -107,7 +107,7 @@
   transition: transform 0.18s ease, transform-origin 0.08s linear;
 }
 .product-image-full.zoomed {
-  transform: scale(1.7);
+  transform: scale(2.5);
   cursor: zoom-out;
 }
 .product-image-zoom,

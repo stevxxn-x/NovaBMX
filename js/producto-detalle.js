@@ -140,16 +140,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Añadir al carrito (por usuario) y tracking
   document.getElementById("add-cart").addEventListener("click", () => {
-    trackView(c.slug);
+    if (typeof window.trackView === "function") window.trackView(c.slug);
     const added = window.NovaBMX && typeof window.NovaBMX.addToCart === "function"
-      ? window.NovaBMX.addToCart({ cat: c.slug, id: p.id, name: p.name, price: p.price })
+      ? window.NovaBMX.addToCart({
+        cat: c.slug,
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        image: images[0]
+      })
       : false;
 
     if (!added) {
-      alert("Inicia sesión para guardar productos en tu carrito.");
+      alert("No se pudo añadir el producto al carrito.");
       return;
     }
 
-    alert("¡Añadido al carrito!");
+    window.location.href = "carrito.html";
   });
 });
