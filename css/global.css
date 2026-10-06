@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;700&display=swap');
+@import url('./variables.css');
+@import url('./reset.css');
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-outline { border-color: var(--border); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+.image-placeholder {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  aspect-ratio: 1;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 2rem;
+}
+.text-primary { color: var(--primary); }
+.text-muted { color: var(--text-muted); }
+
+/* Utility classes to replace inline styles flagged by linters */
+.mt-075 { margin-top: .75rem; }
+.mt-1 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.fs-3rem { font-size: 3rem; }
+.fs-2-5 { font-size: 2.5rem; }
+.eyebrow { font-size: .75rem; text-transform: uppercase; letter-spacing: .3em; }
+.page-header-custom { border-bottom: 1px solid var(--border); padding: 5rem 1.5rem; }
+.two-col-layout { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+.aspect-4-5 { aspect-ratio: 4 / 5; }
+.clamp-title { font-size: clamp(3rem, 8vw, 5rem); margin-top: 1rem; }
+
+
+
+/* Contenedor Principal en pantalla dividida */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;           /* Altura fija al 100% de la pantalla */
+    background-color: #000000;
+    overflow: hidden;        /* Evita cualquier scroll no deseado */
+    position: relative;
+}
+
+/* Zona de texto */
+.hero-text {
+    width: 50%;
+    padding: 0 5%;
+    box-sizing: border-box;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    color: #a0a0a0;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+

@@ -1,0 +1,255 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  margin-top: 2rem;
+  z-index: 50;
+  background: rgba(10, 10, 10, 0.9);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 0;
+}
+.navbar-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.9rem 1.5rem 1.1rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.navbar-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 0 0 auto;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+.navbar-brand img {
+  display: block;
+  width: 9rem;
+  height: 2.8rem;
+  object-fit: contain;
+}
+.navbar-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+  flex: 0 0 auto;
+}
+.navbar-secondary {
+  display: flex;
+  align-items: center;
+  width: auto;
+  flex: 1;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.2rem;
+}
+.navbar-links {
+  display: flex;
+  gap: 1.6rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0.2rem 0;
+  white-space: nowrap;
+}
+.navbar-actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: flex-end;
+  width: auto;
+  margin-left: 1rem;
+}
+
+/* highlight removed: account/cart outlines were removed per user request */
+.navbar-action-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #f8f8f8;
+  padding: 0.24rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+  border-radius: 4px;
+  line-height: 1;
+  font-size: 0.82rem;
+}
+.navbar-action-btn:hover {
+  color: #fff;
+  opacity: 0.85;
+}
+.navbar-links a {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  transition: color 0.2s;
+  padding: 0.35rem 0.5rem 0.2rem;
+  color: rgba(255,255,255,0.9);
+}
+.navbar-links a:hover,
+.navbar-links a.active {
+  color: var(--primary);
+}
+
+.account-emoji {
+  font-size: 0.98rem;
+  display: inline-block;
+  width: 1.05rem;
+  text-align: center;
+}
+
+.search-result-item {
+  padding: 0.8rem 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+.search-result-item:hover { background: rgba(255, 107, 0, 0.1); }
+.search-result-img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.search-result-info h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.search-result-info p {
+  margin: 0.2rem 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.search-no-results {
+  padding: 1rem 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.account-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+.account-modal.hidden { display: none; }
+.account-modal-content {
+  width: min(100%, 420px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  position: relative;
+}
+.account-close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.account-mode-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.account-mode-toggle button {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: inherit;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+}
+.account-mode-toggle button.active {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.account-form {
+  display: grid;
+  gap: 0.75rem;
+}
+.account-form input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: inherit;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+}
+.account-form input.hidden { display: none; }
+.account-feedback {
+  margin-top: 0.75rem;
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+.account-logged-in {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar-secondary {
+    gap: 0.5rem;
+  }
+  .navbar-actions {
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+  .navbar-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .navbar-links a {
+    padding: 0.35rem 0.25rem 0.2rem;
+    font-size: 0.68rem;
+  }
+}
+@media (max-width: 560px) {
+  .navbar-inner {
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+    padding: 0.65rem 1rem;
+  }
+  .navbar-brand img {
+    width: 7rem;
+    height: 2.2rem;
+  }
+  .navbar-secondary {
+    flex-basis: 100%;
+  }
+  .navbar-links {
+    justify-content: flex-start;
+  }
+}

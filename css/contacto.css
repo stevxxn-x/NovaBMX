@@ -1,0 +1,87 @@
+.contact-section {
+  padding: 4rem 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.contact-section h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin: 1rem 0 3rem;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.contact-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem;
+  color: var(--text);
+}
+
+.contact-card p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.contact-card .btn {
+  width: 100%;
+}
+
+.contact-additional {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.contact-additional h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-additional p {
+  margin: 0.75rem 0;
+  color: var(--text-muted);
+}
+
+.contact-additional strong {
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 2rem 1rem;
+  }
+  
+  .contact-methods {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
